@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "833234227859",
+    "project_id": "aiwe-b9f68",
+    "storage_bucket": "aiwe-b9f68.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:833234227859:android:09f38725802661ffd8f366",
+        "android_client_info": {
+          "package_name": "com.lulosys.aiwe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "833234227859-43qe9aejeuho0eo0o20nve5enf1r16lo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFFc_WEXTch3uom_GcmBnN8mbURUcuXTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "833234227859-43qe9aejeuho0eo0o20nve5enf1r16lo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
