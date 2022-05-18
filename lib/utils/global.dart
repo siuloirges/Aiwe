@@ -4,14 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
 //config
-String ip = "http://128.199.3.176:85/api";
-String storage = 'http://128.199.3.176:85/storage/';
-String nombreApp = "Aiwee";
+// String ip = "http://128.199.3.176:85/api";
+// String storage = 'http://128.199.3.176:85/storage/';
+
+//local
+String ip = "https://192.168.1.71/aiwe_database/public/api";
+String storage = 'https://192.168.1.71/aiwe_database/storage/';
+String numberPhoneBot = "573043707188";
+String nombreApp = "Travel";
 String linkAndroid = "";
 String linkIos = "";
 
 // Colores
-Color primaryColor = Colors.red;
+Color primaryColor = Color.fromRGBO(84, 83, 83, 1);
 Color activeColor = Colors.amber.withOpacity(0.6);
 Color themeColor = Colors.white;
 
@@ -87,8 +92,11 @@ Widget horizontalRoundButton(String text,
   );
 }
 
-Widget horizontalScrollBox(Size size, {List<Widget> list, Function onTap, }) {
-
+Widget horizontalScrollBox(
+  Size size, {
+  List<Widget> list,
+  Function onTap,
+}) {
   return Column(
     children: [
       Padding(
@@ -233,7 +241,6 @@ linearLoading({double height = 2}) {
   return ClipRRect(
     borderRadius: BorderRadius.circular(100),
     child: LinearProgressIndicator(
-      // backgroundColor: themeColor,
       valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
       minHeight: height,
     ),

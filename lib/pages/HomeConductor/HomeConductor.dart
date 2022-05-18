@@ -4,6 +4,7 @@
 import 'dart:convert';
 
 import 'package:aiwe/pages/HomeConductor/Pages/InfoPageConductor.dart';
+import 'package:aiwe/pages/HomeConductor/Pages/noAutorizadoPage.dart';
 import 'package:aiwe/pages/HomeConductor/utils/Providers/InicioConductorProvider.dart';
 import 'package:aiwe/utils/global.dart';
 import 'package:aiwe/utils/preferencias.dart';
@@ -12,7 +13,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:flutter/cupertino.dart';
 
 IncioConductorProvider incioConductorProvider = new IncioConductorProvider();
 
@@ -22,6 +22,7 @@ class HomeConductor extends StatefulWidget {
   @override
   HomeConductorState createState() => HomeConductorState();
 }
+
 class HomeConductorState extends State<HomeConductor> {
   PageController pageController = new PageController();
   @override
@@ -54,7 +55,7 @@ class HomeConductorState extends State<HomeConductor> {
     listData = incioConductorProvider.notifiChanel;
 
     print(listData.toString() + "|===== Page");
-    
+
     return Scaffold(
       drawer: MenuDesplegable(),
       backgroundColor: Color.fromRGBO(243, 247, 243, 1),
@@ -165,7 +166,11 @@ class HomeConductorState extends State<HomeConductor> {
 
   List<Widget> actions() {
     return [
-      IconButton(icon: Icon(Icons.delivery_dining), onPressed: () {}),
+      IconButton(
+          icon: Icon(Icons.delivery_dining),
+          onPressed: () {
+            Navigator.popAndPushNamed(context, NoAutorizadoPage.idRuta);
+          }),
       IconButton(
         icon: Icon(Icons.close_rounded),
         onPressed: () {

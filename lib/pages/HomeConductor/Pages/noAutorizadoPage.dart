@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:aiwe/utils/global.dart';
+import 'package:aiwe/utils/preferencias.dart';
+import 'package:aiwe/utils/provider/PeticionesHttp.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mime_type/mime_type.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../utils/global.dart';
-import '../../../utils/preferencias.dart';
-import '../../../utils/provider/PeticionesHttp.dart';
-
 import 'package:http_parser/http_parser.dart';
 import 'package:http/http.dart' as http;
 
@@ -140,14 +139,14 @@ class _NoAutorizadoPageState extends State<NoAutorizadoPage> {
               addImage(
                 context,
                 nombreCampo: 'Foto de perfil',
-                fotoCampo: File(profile_picutre.path),
+                fotoCampo: File(profile_picutre?.path ?? ''),
                 idTipoDocumento: TiposDocumentos.profile_picutre,
                 urlFoto: _pref.profile_picutre,
               ),
               addImage(
                 context,
                 nombreCampo: 'Foto cedula parte delantera',
-                fotoCampo: File(identification_document_picture_1.path),
+                fotoCampo: File(identification_document_picture_1?.path ?? ''),
                 idTipoDocumento:
                     TiposDocumentos.identification_document_picture_1,
                 urlFoto: _pref.identification_document_picture_1,
@@ -155,7 +154,7 @@ class _NoAutorizadoPageState extends State<NoAutorizadoPage> {
               addImage(
                 context,
                 nombreCampo: 'Foto cedula parte trasera',
-                fotoCampo: File(identification_document_picture_2.path),
+                fotoCampo: File(identification_document_picture_2?.path ?? ''),
                 idTipoDocumento:
                     TiposDocumentos.identification_document_picture_2,
                 urlFoto: _pref.identification_document_picture_2,
@@ -163,49 +162,49 @@ class _NoAutorizadoPageState extends State<NoAutorizadoPage> {
               addImage(
                 context,
                 nombreCampo: 'Foto vehiculo parte lateral',
-                fotoCampo: File(vehicle_picture_1.path),
+                fotoCampo: File(vehicle_picture_1?.path ?? ''),
                 idTipoDocumento: TiposDocumentos.vehicle_picture_1,
                 urlFoto: _pref.vehicle_picture_1,
               ),
               addImage(
                 context,
                 nombreCampo: 'Foto vehiculo parte frontal',
-                fotoCampo: File(vehicle_picture_2.path),
+                fotoCampo: File(vehicle_picture_2?.path ?? ''),
                 idTipoDocumento: TiposDocumentos.vehicle_picture_2,
                 urlFoto: _pref.vehicle_picture_2,
               ),
               addImage(
                 context,
                 nombreCampo: 'Foto placa del vehiculo',
-                fotoCampo: File(license_plate_picture.path),
+                fotoCampo: File(license_plate_picture?.path ?? ''),
                 idTipoDocumento: TiposDocumentos.license_plate_picture,
                 urlFoto: _pref.license_plate_picture,
               ),
               addImage(
                 context,
                 nombreCampo: 'Foto tarjeta de propiedad parte frontal',
-                fotoCampo: File(property_card_picture_1.path),
+                fotoCampo: File(property_card_picture_1?.path ?? ''),
                 idTipoDocumento: TiposDocumentos.property_card_picture_1,
                 urlFoto: _pref.property_card_picture_1,
               ),
               addImage(
                 context,
                 nombreCampo: 'Foto tarjeta de propiedad parte trasera',
-                fotoCampo: File(property_card_picture_2.path),
+                fotoCampo: File(property_card_picture_2?.path ?? ''),
                 idTipoDocumento: TiposDocumentos.property_card_picture_2,
                 urlFoto: _pref.property_card_picture_2,
               ),
               addImage(
                 context,
                 nombreCampo: 'Soat parte frontal',
-                fotoCampo: File(soat_picture_1.path),
+                fotoCampo: File(soat_picture_1?.path ?? ''),
                 idTipoDocumento: TiposDocumentos.soat_picture_1,
                 urlFoto: _pref.soat_picture_1,
               ),
               addImage(
                 context,
                 nombreCampo: 'Soat parte trasera',
-                fotoCampo: File(soat_picture_2.path),
+                fotoCampo: File(soat_picture_2?.path ?? ''),
                 idTipoDocumento: TiposDocumentos.soat_picture_2,
                 urlFoto: _pref.soat_picture_2,
               ),
@@ -436,12 +435,13 @@ class _NoAutorizadoPageState extends State<NoAutorizadoPage> {
       case TiposDocumentos.profile_picutre:
         setState(() {});
         profile_picutre = imagen;
-        subirImagen(File(imagen.path), "profile_picutre");
+        subirImagen(File(imagen?.path ?? ''), "profile_picutre");
         break;
       case TiposDocumentos.identification_document_picture_1:
         setState(() {});
         identification_document_picture_1 = imagen;
-        subirImagen(File(imagen.path), "identification_document_picture_1");
+        subirImagen(
+            File(imagen?.path ?? ''), "identification_document_picture_1");
         break;
       case TiposDocumentos.identification_document_picture_2:
         setState(() {});
@@ -470,12 +470,12 @@ class _NoAutorizadoPageState extends State<NoAutorizadoPage> {
       case TiposDocumentos.soat_picture_1:
         setState(() {});
         soat_picture_1 = imagen;
-        subirImagen(File(imagen.path), "soat_picture_1");
+        subirImagen(File(imagen?.path ?? ''), "soat_picture_1");
         break;
       case TiposDocumentos.soat_picture_2:
         setState(() {});
         soat_picture_2 = imagen;
-        subirImagen(File(imagen.path), "soat_picture_2");
+        subirImagen(File(imagen?.path ?? ''), "soat_picture_2");
         break;
     }
   }
@@ -726,8 +726,8 @@ class _NoAutorizadoPageState extends State<NoAutorizadoPage> {
 
   Future<Map<String, dynamic>> subirImagen(File imagen, String key) async {
     final url = Uri.parse('$ip/users');
-    print(mime(imagen.path));
-    final mimeType = mime(imagen.path).split('/');
+    print(mime(imagen?.path ?? ''));
+    final mimeType = mime(imagen?.path ?? '').split('/');
     final imageUploadRequest = http.MultipartRequest(
       'POST',
       url,
@@ -739,7 +739,7 @@ class _NoAutorizadoPageState extends State<NoAutorizadoPage> {
 
     final file = await http.MultipartFile.fromPath(
       '$key',
-      imagen.path,
+      imagen?.path ?? '',
       contentType: MediaType(
         mimeType[0],
         mimeType[1],

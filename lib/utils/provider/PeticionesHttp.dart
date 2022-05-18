@@ -7,8 +7,8 @@ import '../preferencias.dart';
 
 class PeticionesHttpProvider {
   PreferenciasUsuario prefs = new PreferenciasUsuario();
-  postMethod(
-      {BuildContext context, String table, Map body, String token}) async {
+  postMethod({BuildContext context, String table, Map body, String token}) async {
+    
     Map<String, String> head;
 
     if (token != null) {
@@ -18,6 +18,7 @@ class PeticionesHttpProvider {
     }
 
     try {
+      print("----------------------------");
       dynamic resp = await http
           .post(Uri.parse(ip + '/$table'), body: body, headers: head)
           .timeout(Duration(seconds: 20), onTimeout: () {
@@ -28,7 +29,7 @@ class PeticionesHttpProvider {
           }
         };
       });
-      // print(resp/body);
+      print(resp.body);
 
       Map<String, dynamic> decodeResp = json.decode(resp.body);
 
@@ -75,7 +76,7 @@ class PeticionesHttpProvider {
         // "message": "Unauthenticated."
         if (decodeResp['message'] == 'Unauthenticated.') {
           // Navigator.of(context).pushReplacementNamed('inicio${prefs.rol}');
-          // Navigator.of(context).pushReplacementNamed('IniciarSesion');
+          Navigator.of(context).pushReplacementNamed('IniciarSesion');
           return {'message': "expiro", 'data': decodeResp, 'resp': resp};
         }
         return {'message': "false", 'data': decodeResp, 'resp': resp};
@@ -125,7 +126,7 @@ class PeticionesHttpProvider {
       if (resp.statusCode != 200) {
         print(resp.body);
         if (decodeResp['message'] == 'Unauthenticated.') {
-          // Navigator.of(context).pushReplacementNamed('IniciarSesion');
+          Navigator.of(context).pushReplacementNamed('IniciarSesion');
           return {'message': "expiro", 'data': decodeResp, 'resp': resp};
         }
         return {'message': "false", 'errors': decodeResp['errors']};
@@ -169,7 +170,7 @@ class PeticionesHttpProvider {
       if (resp.statusCode != 200) {
         print(resp.body);
         if (decodeResp['message'] == 'Unauthenticated.') {
-          // Navigator.of(context).pushReplacementNamed('IniciarSesion');
+          Navigator.of(context).pushReplacementNamed('IniciarSesion');
           return {'message': "expiro", 'data': decodeResp, 'resp': resp};
         }
         return {'message': "false", 'errors': decodeResp['errors']};
@@ -215,7 +216,7 @@ class PeticionesHttpProvider {
       if (resp.statusCode != 200) {
         print(resp.body);
         if (decodeResp['message'] == 'Unauthenticated.') {
-          // Navigator.of(context).pushReplacementNamed('IniciarSesion');
+          Navigator.of(context).pushReplacementNamed('IniciarSesion');
           return {'message': "expiro", 'data': decodeResp, 'resp': resp};
         }
         return {'message': "false", 'data': decodeResp, 'resp': resp};
@@ -256,7 +257,7 @@ class PeticionesHttpProvider {
         print(resp.body);
 
         if (decodeResp['message'] == 'Unauthenticated.') {
-          // Navigator.of(context).pushReplacementNamed('IniciarSesion');
+          Navigator.of(context).pushReplacementNamed('IniciarSesion');
           return {'message': "expiro", 'data': decodeResp, 'resp': resp};
         }
         return {'message': "false", 'data': decodeResp, 'resp': resp};

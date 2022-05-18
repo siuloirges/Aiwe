@@ -46,6 +46,7 @@ dependencies:
   oktoast: ^3.1.5
   package_info: ^2.0.2
   animate_do:
+  url_launcher: ^6.1.2
   
 
 dev_dependencies:

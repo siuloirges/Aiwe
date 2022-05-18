@@ -5,6 +5,7 @@ import 'package:aiwe/pages/HomeCliente/utils/ConfirmarClienteProvider.dart';
 import 'package:aiwe/utils/global.dart';
 import 'package:aiwe/utils/preferencias.dart';
 import 'package:aiwe/utils/provider/sendNotifi.dart';
+import 'package:aiwe/utils/widget/drawer.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
@@ -43,15 +44,14 @@ class ConfirmarClientePageState extends State<ConfirmarClientePage> {
   Widget build(BuildContext context) {
     if (!init) {
       init = true;
-      prefs.ultima_pagina=ConfirmarClientePage.idRuta;
+      prefs.ultima_pagina = ConfirmarClientePage.idRuta;
       size = MediaQuery.of(context).size;
-      
     }
 
     listData = confirmarClienteProvider.notifiChanel;
     print(listData.toString() + "|===== Page");
     return Scaffold(
-      drawer: Drawer(),
+      drawer: MenuDesplegable(),
       backgroundColor: Color.fromRGBO(243, 247, 243, 1),
       appBar: AppBar(
         title: Text(

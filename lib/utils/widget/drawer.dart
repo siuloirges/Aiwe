@@ -1,3 +1,4 @@
+import 'package:aiwe/pages/HomeCliente/HomeCliente.dart';
 import 'package:aiwe/pages/loginPage/login.dart';
 import 'package:aiwe/utils/global.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,24 @@ class MenuDesplegable extends StatelessWidget {
                               },
                               title: Text('Perfil Cliente'),
                               leading: Icon(Icons.person)),
+
+                              
+                        ],
+                      )
+                    : Container(),
+              ),
+              Container(
+                child: pref.role == "client"
+                    ? Column(
+                        children: [
+                          ListTile(
+                              onTap: () {
+                                Scaffold.of(context).openEndDrawer();
+                                Navigator.of(context)
+                                    .pushNamed(HomeCliente.idRuta);
+                              },
+                              title: Text('Home'),
+                              leading: Icon(Icons.home)),
                         ],
                       )
                     : Container(),
@@ -68,6 +87,7 @@ class MenuDesplegable extends StatelessWidget {
                       : size.width * 0.056,
                 ),
               ),
+              
             ],
           ),
         ),

@@ -18,7 +18,7 @@ Map<String, WidgetBuilder> rutas() {
     HomePage.idRuta: (_) => HomePage(),
     HomeCliente.idRuta: (_) => HomeCliente(),
     HomeConductor.idRuta: (_) => HomeConductor(),
-    NoAutorizadoPage.idRuta: (_) => NoAutorizadoPage(),
+    NoAutorizadoPage.idRuta: (c) => NoAutorizadoPage(),
     InfoPageConductor.idRuta: (_) => InfoPageConductor(),
     OrderPage.idRuta: (_) => OrderPage(),
     ConfirmarClientePage.idRuta: (_) => ConfirmarClientePage(),

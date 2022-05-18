@@ -1,10 +1,14 @@
 // import 'package:aiwe/pages/HomeConductor/Pages/orderPage.dart';
 import 'dart:io';
 import 'package:aiwe/pages/HomeCliente/HomeCliente.dart';
-import 'package:aiwe/pages/HomeConductor/HomeConductor.dart';
+import 'package:aiwe/pages/HomeConductor/Pages/noAutorizadoPage.dart';
 import 'package:aiwe/pages/loginPage/login.dart';
+// import 'package:aiwe/pages/HomeConductor/HomeConductor.dart';
+// import 'package:aiwe/pages/loginPage/login.dart';
 import 'package:aiwe/providers/verificarAutorizacionConductor.dart';
+import 'package:aiwe/routes/rutas.dart';
 import 'package:aiwe/utils/PuhsNotifi.dart';
+import 'package:aiwe/utils/global.dart';
 // import 'package:aiwe/utils/global.dart';
 import 'package:aiwe/utils/preferencias.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +24,7 @@ import 'utils/provider/directionProvider.dart';
 // import 'package:aiwe/pages/HomeAdmin/HomeAdmin.dart';
 
 FirebaseMessaging messaging = FirebaseMessaging.instance;
+
 VerificarAutorizacionConductor verificar = new VerificarAutorizacionConductor();
 
 class MyHttpOverrides extends HttpOverrides {
@@ -64,6 +69,7 @@ class _MyAppState extends State<MyApp> {
   VerificarAutorizacionConductor verificarAuthConductor =
       new VerificarAutorizacionConductor();
   String auth;
+
   @override
   void initState() {
     PushNotificationsProviders.messagesStream.listen(
@@ -93,10 +99,15 @@ class _MyAppState extends State<MyApp> {
         child: MaterialApp(
           navigatorKey: navigatorKey, // Navegar
           scaffoldMessengerKey: messengerKey,
-          // theme: ThemeData(primaryColor: primaryColor),
+          theme: ThemeData(
+            primaryColor: primaryColor,
+          ),
+
           debugShowCheckedModeBanner: false,
-          title: 'Aiwe',
-          home: HomeCliente(),
+          title: 'Travel',
+          // home: (),
+          initialRoute: LoginPage.idRuta,
+          routes: rutas(),
         ),
       ),
     );

@@ -71,8 +71,11 @@ class HomeClienteState extends State<HomeCliente> {
 
   @override
   Widget build(BuildContext context) {
+
     api = Provider.of<DirectionProvider>(context);
+
     size = MediaQuery.of(context).size;
+    
     orientacion = MediaQuery.of(context).orientation;
 
     if (init == false) {
@@ -137,7 +140,7 @@ class HomeClienteState extends State<HomeCliente> {
                       child: FloatingActionButton(
                         backgroundColor: themeColor,
                         onPressed: () {
-                          // _centerView();
+                          _centerView();
                         },
                         child: Icon(
                           Icons.center_focus_strong,
@@ -333,7 +336,29 @@ class HomeClienteState extends State<HomeCliente> {
                               loaddestidoDireccion == false &&
                               dataListMarker.length >= 2 &&
                               precioController.text.length != 0
-                          ? () {
+                          ? () async {
+                            
+                              var headers = {
+                                'Content-Type': 'application/json'
+                              };
+                              var request = http.Request(
+                                  'GET', Uri.parse(ip + '/notifiDrivers'));
+
+                              request.body =
+                                  json.encode({"from": prefs.fcm_token});
+                              request.headers.addAll(headers);
+
+                              http.StreamedResponse response =
+                                  await request.send();
+
+                              if (response.statusCode == 200) {
+                                print(await response.stream.bytesToString());
+                              } else {
+                                print(response.reasonPhrase);
+                              }
+
+                              api.route = null;
+
                               Navigator.of(context)
                                   .pushNamed(ConfirmarClientePage.idRuta);
                             }
@@ -460,14 +485,14 @@ class HomeClienteState extends State<HomeCliente> {
 
   getIcons() async {
     var iconOrigen = await BitmapDescriptor.fromAssetImage(
-        ImageConfiguration(devicePixelRatio: 1.0, size: Size(5, 5)),
+        ImageConfiguration(devicePixelRatio: 1.0, size: Size(20, 20)),
         "assets/IconOrigen.png");
     this.iconOrigen = iconOrigen;
     // setState(() {
     // });
 
     var iconDestino = await BitmapDescriptor.fromAssetImage(
-      ImageConfiguration(devicePixelRatio: 1.0, size: Size(5, 5)),
+      ImageConfiguration(devicePixelRatio: 1.0, size: Size(20, 20)),
       "assets/IconDestino.png",
       mipmaps: true,
     );
@@ -516,15 +541,15 @@ class HomeClienteState extends State<HomeCliente> {
 
     dataListMarker?.forEach((element) {
       if (element["markerId"] == markerId) {
-        print("===| update");
+        print("===| update |===");
         buscar = true;
         dataListMarker[index] = {
           "markerId": markerId,
-          // "direccion": 'hola',
           "direccion": respJson['display_name'],
           "latitude": latitude,
           "longitude": longitude
         };
+
         if (markerId == "origen") {
           loadOrigenDireccion = false;
         } else {
@@ -538,7 +563,6 @@ class HomeClienteState extends State<HomeCliente> {
       print("===| Create");
       dataListMarker.add({
         "markerId": markerId,
-        // "direccion": 'asd',
         "direccion": respJson['display_name'],
         "latitude": latitude,
         "longitude": longitude

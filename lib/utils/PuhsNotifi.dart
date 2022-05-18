@@ -4,7 +4,6 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:aiwe/main.dart';
 import 'package:aiwe/pages/HomeCliente/utils/ConfirmarClienteProvider.dart';
 import 'package:aiwe/pages/HomeConductor/Pages/orderPage.dart';
 import 'package:aiwe/pages/HomeConductor/utils/Providers/InicioConductorProvider.dart';
@@ -167,16 +166,20 @@ rolCLient(
 }
 
 rolDelivery(
-    {dynamic data,
+    {RemoteMessage data,
     navigatorKey,
     messengerKey,
     IncioConductorProvider incioConductorProvider}) {
   switch (data.data['tipo']) {
     case 'info':
       {
+        // print("-----");
+        // print(data.notification.title);
+        // print(data.notification.body);
+
         floadMessage(
-          titulo: data["notification"]['title'],
-          mensaje: data["notification"]['body'],
+          titulo: data.notification.title,
+          mensaje: data.notification.body,
           duration: Duration(seconds: 3),
         );
       }

@@ -2,7 +2,7 @@
     package="com.lulosys.aiwe">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="aiwe"
+        android:label="Travel"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
@@ -39,6 +39,6 @@
             android:name="flutterEmbedding"
             android:value="2" />
             <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyAdT07qTlGV8vdF7Lna33Xnmx7VnRimyY4"/>
+               android:value="AIzaSyDFFc_WEXTch3uom_GcmBnN8mbURUcuXTg"/>
     </application>
 </manifest>

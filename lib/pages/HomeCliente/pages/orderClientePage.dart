@@ -139,7 +139,7 @@ class _OrderClientPageState extends State<OrderClientePage> {
                 flex: 3,
                 child: Container(
                   child: Text(
-                    "Espera a tu repartidor",
+                    "Espera a tu Conductor",
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -193,7 +193,7 @@ class _OrderClientPageState extends State<OrderClientePage> {
           validator: (value) => validate.validateNumerico(value),
           // autovalidate: true,
           // autocorrect: true,
-          
+
           onChanged: (value) {
             if (value != null) {
               olderOfferConductor = true;
